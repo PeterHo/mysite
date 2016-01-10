@@ -11,7 +11,7 @@ Provisioning a new site
 
 eg, on Ubuntu:
 
-    sudo apt-get install nginx git python3 python3-pip
+    sudo apt-get install nginx git python3 python3-pip tree
     sudo pip3 install virtualenv
 
 ## Nginx Virtual Host config
