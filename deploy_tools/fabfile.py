@@ -31,6 +31,7 @@ def deploy():
     _update_virtualenv(source_folder, virtualenv_folder)
     _update_static_files(source_folder)
     _update_database(source_folder)
+    run('sudo restart gunicorn-peterho.me')
 
 
 def _create_directory_structure_if_necessary(site_folder):
