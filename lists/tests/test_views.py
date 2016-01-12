@@ -12,16 +12,6 @@ from lists.models import Item, List
 class HomePageTest(TestCase):
     maxDiff = None
 
-    def test_root_url_resolves_to_home_page_view(self):
-        found = resolve('/')
-        self.assertEqual(found.func, home_page)
-
-    def test_home_page_returns_correct_html(self):
-        request = HttpRequest()
-        response = home_page(request)
-        expected_html = render_to_string('lists/home.html', {'form': ItemForm()})
-        self.assertMultiLineEqual(response.content.decode(), expected_html)
-
     def test_home_page_renders_home_template(self):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'lists/home.html')
