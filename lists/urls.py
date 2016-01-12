@@ -5,6 +5,6 @@ from django.contrib import admin
 __author__ = 'peter'
 
 urlpatterns = [
-    url(r'^(\d+)/$', 'lists.views.view_list', name='view_list'),
+    url(r'^(?P<list_id>\d+)/$', 'lists.views.view_list', name='view_list'),
     url(r'^new$', 'lists.views.new_list', name='new_list'),
 ]
