@@ -1,0 +1,20 @@
+<div class="ui-grid-b">
+    {% for key, value in service_text.items %}
+        {% if forloop.counter|divisibleby:"6" %}
+            <div class="ui-block-c">
+        {% elif forloop.counter|divisibleby:"5" %}
+            <div class="ui-block-b">
+        {% elif forloop.counter|divisibleby:"4" %}
+            <div class="ui-block-a">
+        {% elif forloop.counter|divisibleby:"3" %}
+            <div class="ui-block-c">
+        {% elif forloop.counter|divisibleby:"2" %}
+            <div class="ui-block-b">
+        {% else %}
+            <div class="ui-block-a">
+        {% endif %}
+                <label for="id_{{ key }}">{{ value }}</label>
+                <input id="id_{{ key }}" name="{{ key }}" type="checkbox">
+            </div>
+    {% endfor %}
+</div>

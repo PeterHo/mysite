@@ -1,0 +1,16 @@
+<div class="ui-field-contain">
+    <label for="{{ id }}">{{ label }}</label>
+
+    <div class="ui-input-text ui-body-inherit ui-corner-all ui-mini ui-shadow-inset addon2_input">
+        <input data-role="none" name="{{ name }}" id="{{ id }}" placeholder="{{ placeholder }}"
+               maxlength="{{ max_length }}">
+    </div>
+    <label class="addon_label">元/天</label>
+    <div>
+        <label for="{{ id }}_enable" class="ui-hidden-accessible"></label>
+        <select name="{{ name }}_enable" id="{{ id }}_enable" data-role="flipswitch" data-mini="true">
+            <option value="0">未选</option>
+            <option value="1">已选</option>
+        </select>
+    </div>
+</div>

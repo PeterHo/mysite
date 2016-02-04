@@ -1,0 +1,15 @@
+<div class="form-group form-group-sm">
+    <label for="{{ id }}" class="col-xs-3 control-label">{{ label }}</label>
+
+    <div class="col-xs-9">
+        <div class="input-group input-group-sm">
+            <input type="text" class="form-control" id="{{ id }}" name="{{ name }}"
+                   placeholder="{{ place_holder }}" value="{{ field.value }}">
+            <span class="input-group-addon">元/天</span>
+            <span class="input-group-btn">
+                <button class="switch-button" id="{{ id }}_btn" type="button">选取</button>
+                <input type="hidden" name="{{ name }}_enable" value="{{ enable.value }}">
+            </span>
+        </div>
+    </div>
+</div>

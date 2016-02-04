@@ -1,0 +1,47 @@
+{% load staticfiles %}
+
+<div class="form-group form-group-sm">
+    <label for="{{ field.id_for_label }}"
+           class="{{ settings.horiz_label_class }} control-label">{{ field.label }}</label>
+
+    <div class="{{ settings.horiz_field_class }} image-upload">
+        <label for="id_file_{{ field.name }}">
+            <img class="head_portrait" id="id_img_{{ field.name }}" src="{{ src }}">
+        </label>
+        <input class="file" type="file" id="id_file_{{ field.name }}">
+        {% if field.value %}
+            <input id="id_{{ field.name }}" type="hidden" name="{{ field.name }}" value="{{ field.value }}">
+        {% else %}
+            <input id="id_{{ field.name }}" type="hidden" name="{{ field.name }}">
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    $("#id_file_{{ field.name }}").change(function () {
+        lrz(this.files[0], {
+            width: 1024
+        }).then(function (rst) {
+            // 显示图片
+            $("#id_img_{{ field.name }}").attr("src", "{% static 'images/loading.gif' %}");
+            // 发送图片
+            rst.formData.append('fileLen', rst.fileLen);
+            $.post("{% url 'img:upload_base64' img_type=img_type %}", {
+                        file: rst.base64,
+                        base64Len: rst.base64Len
+                    },
+                    function (data, status) {
+                        if (data != 'None') {
+                            $("#id_{{ field.name }}").val(data);
+                            $("#id_img_{{ field.name }}").attr("src", rst.base64);
+                        } else {
+                            alert("上传图片失败,请重试");
+                        }
+                    })
+        }).catch(function (err) {
+            alert("上传图片失败,请重试");
+        }).always(function () {
+
+        });
+    });
+</script>

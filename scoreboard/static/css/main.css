@@ -1,0 +1,346 @@
+/* 根据设备宽度设置文字大小 */
+@media only screen and (max-width: 369px) {
+    html, .container {
+        font-size: 87.5%;
+    }
+}
+
+@media only screen and (min-width: 370px) and (max-width: 429px) {
+    html, .container {
+        font-size: 100%;
+    }
+}
+
+@media only screen and (min-width: 430px) and (max-width: 499px) {
+    html, .container {
+        font-size: 100%;
+    }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 569px) {
+    html, .container {
+        font-size: 112.5%;
+    }
+}
+
+@media only screen and (min-width: 570px) and (max-width: 639px) {
+    html, .container {
+        font-size: 125%;
+    }
+}
+
+@media only screen and (min-width: 640px) and (max-width: 719px) {
+    html, .container {
+        font-size: 143.8%;
+    }
+}
+
+@media only screen and (min-width: 720px) {
+    html, .container {
+        font-size: 150%;
+    }
+}
+
+/* 表单Label文字靠左 */
+.form-horizontal .control-label {
+    text-align: left;
+}
+
+/* 设置页面居中和最大最小宽度 */
+.wrapper {
+    position: relative;
+    margin: 0 auto;
+    max-width: 640px;
+    min-width: 320px;
+    width: 100%;
+    padding-bottom: 2rem;
+}
+
+/* 去掉数字输入框的spinner */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* btn */
+.input-group-btn .btn-primary {
+    background-color: #1abc9c;
+    color: #fff;
+}
+
+/* agree checkbox */
+.agree_checkbox {
+    font-size: 0.8rem;
+    padding-left: 1rem;
+    padding-top: 20px;
+    text-align: left;
+}
+
+.agree_checkbox span, .agree_checkbox p {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.agree_checkbox span {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #b2b2b2;
+    height: 1rem;
+    width: 1rem;
+}
+
+.agree_checkbox span.selected {
+    background: #fff url("/static/images/gou_ico.png") no-repeat scroll center center;
+    border: 1px solid #ffc600;
+}
+
+.agree_checkbox p a {
+    text-decoration: underline;
+}
+
+/* footer */
+#footer {
+    height: 3.5rem;
+    background-color: #f5f5f5;
+}
+
+#bottomNav {
+    padding: 10px;
+}
+
+#bottomNav a {
+    color: #ddd;
+    text-decoration: none;
+    display: block;
+}
+
+#bottomNav a:hover {
+    color: #fff;
+}
+
+/* li */
+li {
+    list-style: none;
+}
+
+/* 表单上传文件 */
+.image-upload input[type='file'] {
+    display: none;
+}
+
+.image-upload img {
+    cursor: pointer;
+}
+
+/* 图片上传列表 */
+.image-upload li img {
+    width: 6rem;
+    height: 6rem;
+    margin-left: 0.2rem;
+    margin-top: 0.2rem;
+}
+
+/* 图片描述 */
+.image-upload li p {
+    width: 6rem;
+    margin-left: 0.2rem;
+    text-align: center;
+    font-weight: normal;
+    color: #b2b2b2;
+    font-size: 0.8rem;
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 图片编辑 */
+img.edit_img {
+    width: 100%;
+    height: 100%;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+}
+
+/* 头像 */
+img.head_portrait {
+    border: 3px solid #fff;
+    border-radius: 30px;
+    height: 5rem;
+    width: 5rem;
+}
+
+/* 主人页面 */
+.master_top a {
+    display: block;
+}
+
+.master_top a span {
+    float: left;
+}
+
+.master_top a img {
+    border: 3px solid #fff;
+    border-radius: 30px;
+    float: left;
+    height: 5rem;
+    width: 5rem;
+}
+
+.order_status ul {
+    padding-left: 0;
+}
+
+.order_status ul li {
+    float: left;
+    position: relative;
+    width: 20%;
+}
+
+.order_status ul li a {
+    display: block;
+    text-align: center;
+}
+
+/* 宠物列表页面 */
+.pet_list_li {
+    list-style: none;
+    border-bottom: 1px solid #E6E6E6;
+    margin-bottom: 0.5rem;
+}
+
+.pet_list_del_pet {
+}
+
+.pet_list_left {
+    float: left;
+    position: relative;
+    width: 3rem;
+    height: 3rem;
+    margin-right: 0.5rem;
+}
+
+.pet_list_left img {
+    border-radius: 1.25rem;
+    width: 100%;
+    height: 100%;
+}
+
+.pet_list_right {
+}
+
+.pet_list_name {
+    display: block;
+    overflow: hidden;
+    color: #545454;
+    font-size: 1rem;
+    vertical-align: middle;
+}
+
+.pet_list_info {
+    display: block;
+    color: #b2b2b2;
+    font-size: 0.8rem;
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0.2rem 0;
+}
+
+.pet_list_del_pet {
+    float: right;
+}
+
+/* 寄养师特色服务选择 */
+label.special_service_label {
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+/* 寄养师列表页面 */
+.sitter_list_li {
+    list-style: none;
+    border-bottom: 1px solid #E6E6E6;
+    margin-bottom: 0.5rem;
+}
+
+.sitter_list_left {
+    float: left;
+    position: relative;
+    width: 5rem;
+    height: 5rem;
+    margin-right: 0.5rem;
+}
+
+.sitter_list_left img {
+    border-radius: 1.25rem;
+    width: 100%;
+    height: 100%;
+}
+
+.sitter_list_right {
+}
+
+.sitter_list_name {
+    overflow: hidden;
+}
+
+.sitter_list_name span {
+    color: #545454;
+    font-size: 1.25rem;
+    vertical-align: middle;
+}
+
+/* 寄养师列表中特色服务标识 */
+.sitter_list_ss_sign {
+    border-radius: 0.25rem;
+    width: 1rem;
+    height: 1rem;
+}
+
+.sitter_list_desc {
+    color: #b2b2b2;
+    font-size: 1rem;
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0.2rem 0;
+}
+
+.sitter_list_other_info .sitter_list_pet_type a {
+    background: #aedede none repeat scroll 0 0;
+    border-radius: 0.2rem;
+    color: #fff;
+    display: inline-block;
+    font-size: 0.8rem;
+    height: 1rem;
+    letter-spacing: 0.5rem;
+    line-height: 1rem;
+    margin-right: 0.15rem;
+    overflow: hidden;
+    text-align: center;
+    text-indent: 0.1rem;
+    white-space: nowrap;
+    width: 1rem;
+    word-break: keep-all;
+    vertical-align: middle;
+}
+
+/* 表单验证错误样式 */
+input.error {
+    border: 2px solid red;
+}
+
+label.error {
+    padding-left: 16px;
+    padding-bottom: 2px;
+    font-weight: bold;
+    font-size: 70%;
+    color: #EA5200;
+}

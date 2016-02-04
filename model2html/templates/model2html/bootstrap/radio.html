@@ -1,0 +1,22 @@
+<div class="form-group form-group-sm">
+    <label for="{{ field.id_for_label }}"
+           class="{{ settings.horiz_label_class }} control-label">{{ field.label }}</label>
+
+    <div class="{{ settings.horiz_field_class }}">
+        <div class="btn-group" data-toggle="buttons">
+            {% for choice in field.field.choices %}
+                {% if choice.0 == field.value %}
+                    <label class="btn btn-success active">
+                        <input type="radio" name="{{ field.name }}" id="id_{{ field.name }}_{{ forloop.counter0 }}"
+                               value="{{ choice.0 }}" autocomplete="off" checked>{{ choice.1 }}
+                    </label>
+                {% else %}
+                    <label class="btn btn-success">
+                        <input type="radio" name="{{ field.name }}" id="id_{{ field.name }}_{{ forloop.counter0 }}"
+                               value="{{ choice.0 }}" autocomplete="off">{{ choice.1 }}
+                    </label>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

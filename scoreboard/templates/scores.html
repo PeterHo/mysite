@@ -1,0 +1,100 @@
+{% load staticfiles %}
+{% load model2html %}
+<!doctype html>
+<html lang="zh-hans">
+<head>
+    <meta content="text/html" charset="utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <title>{% block head_title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-3.3.5-dist/css/bootstrap.css' %}">
+    {# <link rel="stylesheet" href="{% static 'vendor/bootswatch/flatly/bootstrap.css' %}">#}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <script src="{% static 'vendor/jquery/jquery-2.1.4.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap-3.3.5-dist/js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block head_css %}{% endblock %}
+    {% block head_javascript %}{% endblock %}
+
+</head>
+<body>
+<div class="container">
+    {% block content %}
+        <div class="wrapper">
+            <br>
+            {% bootstrap_header '积分榜' %}
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>胜场</th>
+                    <th>负场</th>
+                    <th>积分</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in players %}
+                    <tr>
+                        <td>{{ player.name }}</td>
+                        <td>{{ player.win }}</td>
+                        <td>{{ player.lose }}</td>
+                        <td>{{ player.score }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <br>
+
+            <form role="form" class="form-horizontal" action="{% url 'score:scores' %}" method="post"
+                  enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_select form.winner %}
+                {% bootstrap_select form.loser %}
+                <button style="width: 80%;" class="btn btn-success center-block" type="submit">提交</button>
+            </form>
+
+            <br>
+
+            {#            <ul class="nav nav-tabs" role="tablist">#}
+            {#                <li role="presentation" class="active" id="he_li">#}
+            {#                    <a href="#he" aria-controls="he" role="tab" data-toggle="tab">何 详细积分</a>#}
+            {#                </li>#}
+            {#                <li role="presentation" id="yu_li">#}
+            {#                    <a href="#yu" aria-controls="yu" role="tab" data-toggle="tab">余 详细积分</a>#}
+            {#                </li>#}
+            {#                <li role="presentation" id="zhang_li">#}
+            {#                    <a href="#zhang" aria-controls="zhang" role="tab" data-toggle="tab">张 详细积分</a>#}
+            {#                </li>#}
+            {#            </ul>#}
+            {#            <div class="tab-content">#}
+            {#                <div role="tabpanel" class="tab-pane" id="he">#}
+            {#                </div>#}
+            {#                <div role="tabpanel" class="tab-pane" id="yu">#}
+            {#                </div>#}
+            {#                <div role="tabpanel" class="tab-pane" id="zhang">#}
+            {#                </div>#}
+            {##}
+            {#                <table class="table">#}
+            {#                    {% for score in scores %}#}
+            {#                        {{ score.winner }}#}
+            {#                        {{ score.loser }}#}
+            {#                        {{ score.time }}#}
+            {#                    {% endfor %}#}
+            {#                </table>#}
+            {#            </div>#}
+        </div>
+    {% endblock %}
+    {# {% include 'footer.html' %} #}
+</div>
+
+{% block footer_javascript %}{% endblock %}
+
+</body>
+</html>

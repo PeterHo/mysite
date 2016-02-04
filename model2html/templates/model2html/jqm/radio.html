@@ -1,0 +1,13 @@
+<div class="ui-field-contain">
+    <label for="{{ name }}">{{ label }}</label>
+    <fieldset data-role="controlgroup" data-mini="true" data-type="horizontal">
+        {% for choice in choices %}
+            {% if forloop.first %}
+                <input name="{{ name }}" id="{{ id }}_{{ forloop.counter }}" value="{{ choice.0 }}" checked="checked" type="radio">
+            {% else %}
+                <input name="{{ name }}" id="{{ id }}_{{ forloop.counter }}" value="{{ choice.0 }}" type="radio">
+            {% endif %}
+            <label for="{{ id }}_{{ forloop.counter }}">{{ choice.1 }}</label>
+        {% endfor %}
+    </fieldset>
+</div>

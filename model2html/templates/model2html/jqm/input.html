@@ -1,0 +1,13 @@
+<div class="ui-field-contain">
+    <label for="{{ id }}">{{ label }}</label>
+    {% if addon_after %}
+        <input data-mini="true" name="{{ name }}" id="{{ id }}" placeholder="{{ place_holder }}"
+               data-wrapper-class="addon_input"
+               maxlength="{{ max_length }}" type="text">
+        <label class="addon_label">{{ addon_after }}</label>
+    {% else %}
+        <input data-mini="true" name="{{ name }}" id="{{ id }}" placeholder="{{ place_holder }}"
+               maxlength="{{ max_length }}" type="text">
+    {% endif %}
+</div>
+

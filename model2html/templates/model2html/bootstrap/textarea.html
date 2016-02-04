@@ -1,0 +1,13 @@
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label" for="{{ id }}">{{ label }}</label>
+
+    <div class="col-xs-9">
+        {% if field.value %}
+            <textarea class="form-control" id="{{ id }}" style="resize: none" rows="3" placeholder="{{ place_holder }}"
+                      name="{{ name }}" maxlength="{{ max_length }}">{{ field.value }}</textarea>
+        {% else %}
+            <textarea class="form-control" id="{{ id }}" style="resize: none" rows="3" placeholder="{{ place_holder }}"
+                      name="{{ name }}" maxlength="{{ max_length }}"></textarea>
+        {% endif %}
+    </div>
+</div>

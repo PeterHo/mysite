@@ -1,0 +1,9 @@
+<div class="ui-field-contain">
+    <label for="{{ id }}">{{ label }}</label>
+
+    <select name="{{ name }}" id="{{ id }}" data-native-menu="false" data-mini="true">
+        {% for choice in choices %}
+            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+        {% endfor %}
+    </select>
+</div>

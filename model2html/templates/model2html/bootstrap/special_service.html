@@ -1,0 +1,9 @@
+<div class="form-group form-group-sm">
+    {% for ss in sslist %}
+        <div class="col-xs-4">
+            <label for="id_service{{ ss.pk }}" class="special_service_label checkbox-button">{{ ss.text }}</label>
+            <input id="id_service{{ ss.pk }}" type="checkbox" name="special_services" value="{{ ss.pk }}" class="hidden"
+                   {% if my_ss and ss.pk in my_ss %}checked{% endif %}>
+        </div>
+    {% endfor %}
+</div>

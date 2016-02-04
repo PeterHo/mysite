@@ -1,0 +1,92 @@
+{% load staticfiles %}
+
+{# 图片编辑模态框 #}
+<div class="modal fade" id="id_{{ name }}_modal" tabindex="-1" role="dialog" aria-labelledby="edit_{{ name }}_img">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="edit_{{ name }}_img">编辑图片</h4>
+            </div>
+            <div class="modal-body">
+                <img id="id_{{ name }}_modal_img" class="center-block edit_img">
+
+                <form role="form" id="id_{{ name }}_modal_form" action="#" method="POST">
+                    <input id="id_{{ name }}_modal_img_pk" type="hidden" name="pk" value="">
+                    <textarea id="id_{{ name }}_modal_desc" style="resize: none" rows="3" class="form-control"
+                              name="desc" placeholder="添加图片描述,限100个字符以内" maxlength="100"></textarea>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <button type="button" style="width: 100%" class="btn btn-default" data-dismiss="modal">取消
+                            </button>
+                        </div>
+                        <div class="col-xs-4">
+                            <button id="id_{{ name }}_modal_submit_btn" type="button" style="width: 100%"
+                                    class="btn btn-primary" data-dismiss="modal">保存
+                            </button>
+                        </div>
+                        <div class="col-xs-4">
+                            <button id="id_{{ name }}_modal_del" type="button" style="width: 100%"
+                                    class="btn btn-danger" data-dismiss="modal">删除图片
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{# 相关js代码 #}
+<script>
+    {# 初始化图片编辑框 #}
+    $("#id_{{ name }}_modal").on('show.bs.modal', function (event) {
+        var img = $(event.relatedTarget);
+        {# 设置图片id #}
+        $("#id_{{ name }}_modal_img_pk").val(img.attr('data-imgid'));
+        {# 设置图片 #}
+        $("#id_{{ name }}_modal_img").attr("src", img.attr('src'));
+        {# 设置图片描述 #}
+        $("#id_{{ name }}_modal_desc").val(img.attr('data-desc'));
+    });
+
+    {# 提交图片编辑结果 #}
+    $("#id_{{ name }}_modal_submit_btn").click(function () {
+        var imgId = $("#id_{{ name }}_modal_img_pk").val();
+        var imgDesc = $("#id_{{ name }}_modal_desc").val();
+        $.post("{% url 'img:set_desc' %}", {
+                    pk: imgId,
+                    desc: imgDesc
+                },
+                function (data, status) {
+                    if (data == 'Success') {
+                        // 修改描述
+                        var img = $("img[data-imgid='" + imgId + "']");
+                        img.attr("data-desc", imgDesc);
+                        var descP = img.next("p");
+                        descP.html(imgDesc);
+                    } else {
+                        alert("图片编辑失败");
+                    }
+                })
+    });
+
+    {# 处理删除图片 #}
+    $("#id_{{ name }}_modal_del").click(function () {
+        if (confirm("确定要删除此图片吗?")) {
+            var imgId = $("#id_{{ name }}_modal_img_pk").val();
+            var url = "{% url 'img:del' pk=123456 %}".replace(/123456/, imgId);
+            $.get(url, function (ret) {
+                if (ret == 'Success') {
+                    {# 删除图片 #}
+                    var img = $("img[data-imgid='" + imgId + "']");
+                    var li = img.parent("li");
+                    li.remove();
+                }
+            });
+        }
+    });
+</script>

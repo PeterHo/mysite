@@ -1,0 +1,17 @@
+<div class="form-group form-group-sm">
+    {% for pet in pets %}
+        {% if forloop.first %}
+            <div class="col-xs-3 col-xs-offset-3">
+        {% else %}
+            <div class="col-xs-3">
+        {% endif %}
+                <label class="checkbox" for="pet_{{ pet.pk }}">
+                    <input type="checkbox" data-toggle="checkbox" value="{{ pet.pk }}" id="pet_{{ pet.pk }}" name="my_pet">
+                    <img src="/media/{{ pet.head_portrait }}">
+                    {{ pet }}
+                </label>
+            </div>
+        {% empty %}
+        <h4>暂无已添加的宠物</h4>
+    {% endfor %}
+</div>

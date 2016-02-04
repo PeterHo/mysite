@@ -1,0 +1,12 @@
+<div class="item noline">
+    <span class="label">{{ label }}</span>
+    <span class="input">
+        <input type="text" id="{{ id }}" name="{{ name }}" maxlength="{{ max_length }}" data-wrapper-class="ui-custom"
+        {% if suffix %}
+            data-role="none" class="input_with_suffix"/>
+            {{ suffix }}
+        {% else %}
+            placeholder="{{ place_holder }}" />
+        {% endif %}
+    </span>
+</div>

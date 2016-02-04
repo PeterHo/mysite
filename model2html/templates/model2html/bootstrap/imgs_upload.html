@@ -1,0 +1,91 @@
+{% load staticfiles %}
+
+{# 图片上传 #}
+<div class="image-upload">
+    <div id="{{ name }}_img_list">
+        <ul id="{{ name }}_img_list_ul" class="list-inline clearfix">
+            {% for img in imgs %}
+                <li id='id_img_li_{{ name }}_{{ forloop.counter0 }}'>
+                    <img id='id_img_{{ name }}_{{ forloop.counter0 }}' src="{{ img.img.url }}"
+                         data-toggle="modal" data-target="#id_{{ name }}_modal" data-imgid="{{ img.pk }}"
+                         data-desc="{{ img.desc }}">
+                    {% if img.desc %}
+                        <p>{{ img.desc }}</p>
+                    {% else %}
+                        <p>点击添加描述</p>
+                    {% endif %}
+                    <input id='id_hidden_input_{{ name }}_{{ forloop.counter0 }}' name='{{ name }}' value="{{ img.pk }}"
+                           type='hidden'>
+                </li>
+            {% endfor %}
+            <li>
+                <label for="id_file_{{ name }}">
+                    <img src="{{ icon_src }}">
+
+                    <p>点击添加图片</p>
+                </label>
+                <input class="file" type="file" id="id_file_{{ name }}">
+            </li>
+        </ul>
+    </div>
+    {% if imgs %}
+        <input id="id_index_{{ name }}" type="hidden" value="{{ imgs|length }}">
+    {% else %}
+        <input id="id_index_{{ name }}" type="hidden" value="0">
+    {% endif %}
+</div>
+
+{# 相关js代码 #}
+<script>
+    {# 上传图片 #}
+    $("#id_file_{{ name }}").change(function () {
+        lrz(this.files[0], {
+            width: 1024
+        }).then(function (rst) {
+            // 获取当前索引
+            var index = $("#id_index_{{ name }}").val();
+            // 添加图片节点并显示图片
+            $("#{{ name }}_img_list_ul").prepend(
+                    "<li id='id_img_li_{{ name }}_" + index + "'>" +
+                    "<img id='id_img_{{ name }}_" + index + "' data-imgid='' data-toggle='modal' data-target='#id_{{ name }}_modal' data-desc=''>" +
+                    "<p>点击添加描述</p>" +
+                    "<input id='id_hidden_input_{{ name }}_" + index + "' name='{{ name }}' type='hidden'>" +
+                    "</li>"
+            );
+            $("#id_img_{{ name }}_" + index).attr("src", "{% static 'images/loading.gif' %}");
+
+            // 发送图片
+            rst.formData.append('fileLen', rst.fileLen);
+            {% if post_url %}
+                var postUrl = "{{ post_url }}";
+            {% else %}
+                var postUrl = "{% url 'img:upload_base64' img_type=img_type %}";
+            {% endif %}
+            $.post(postUrl, {
+                        file: rst.base64,
+                        base64Len: rst.base64Len
+                    },
+                    function (data, status) {
+                        if (data != 'None') {
+                            // 上传成功
+                            // 设置id
+                            $("#id_img_{{ name }}_" + index).attr("data-imgid", data);
+                            $("#id_hidden_input_{{ name }}_" + index).val(data);
+                            // 设置图片
+                            $("#id_img_{{ name }}_" + index).attr("src", rst.base64);
+                            // index自增
+                            index = 1 + parseInt(index);
+                            $("#id_index_{{ name }}").val(index);
+                        } else {
+                            alert("上传图片失败,请重试");
+                            // 删除图片
+                            $("#id_img_li_{{ name }}_" + index).remove();
+                        }
+                    })
+        }).catch(function (err) {
+            alert("上传图片失败,请重试");
+        }).always(function () {
+
+        });
+    });
+</script>

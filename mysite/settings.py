@@ -36,9 +36,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'lists',
+    # 'lists',
     'accounts',
-    'functional_tests',
+    # 'functional_tests',
+    'scoreboard',
+    'model2html',
+    'bootstrap3',
 )
 
 MIDDLEWARE_CLASSES = (

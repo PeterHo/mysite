@@ -1,0 +1,22 @@
+<div class="form-group form-group-sm">
+    <label for="{{ id }}" class="col-xs-3 control-label">{{ label }}</label>
+
+    <div class="col-xs-9">
+{#        <select class="form-control mobileSelect" name="{{ name }}" id="{{ id }}">#}
+        <select class="form-control" name="{{ name }}" id="{{ id }}">
+            {% if field.value %}
+                {% for choice in choices %}
+                    {% if choice.1 == field.value %}
+                        <option value="{{ choice.0 }}" selected>{{ choice.1 }}</option>
+                    {% else %}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                {% for choice in choices %}
+                    <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                {% endfor %}
+            {% endif %}
+        </select>
+    </div>
+</div>
