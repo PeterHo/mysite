@@ -6,6 +6,7 @@ import random
 __author__ = 'peter'
 
 
+# sudo pip2 install fabirc
 # fab deploy:host=ubuntu@peterho.me -i "/home/peter/.ssh/mysite.pem"
 # cd ~/sites/peterho.me/source
 # sed "s/SITENAME/peterho.me/g" deploy_tools/nginx.template.conf | sudo tee /etc/nginx/sites-available/peterho.me

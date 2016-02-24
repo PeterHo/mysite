@@ -2,7 +2,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-from .models import Item
+from .models import Item, List
 
 __author__ = 'peter'
 
@@ -24,13 +24,13 @@ class ItemForm(forms.models.ModelForm):
             'text': {'required': EMPTY_LIST_ERROR}
         }
 
-    def save(self, for_list):
-        self.instance.list = for_list
-        return super().save()
 
-
-class NewListForm(object):
-    pass
+class NewListForm(ItemForm):
+    def save(self, owner):
+        if owner.is_authenticated():
+            List.create_new(first_item_text=self.cleaned_data['text'], owner=owner)
+        else:
+            List.create_new(first_item_text=self.cleaned_data['text'])
 
 
 class ExistingListItemForm(ItemForm):
@@ -44,6 +44,3 @@ class ExistingListItemForm(ItemForm):
         except ValidationError as e:
             e.error_dict = {'text': [DUPLICATE_ITEM_ERROR]}
             self._update_errors(e)
-
-    def save(self):
-        return forms.models.ModelForm.save(self)

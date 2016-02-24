@@ -192,7 +192,6 @@ class NewListViewIntegratedTest(TestCase):
         new_item = Item.objects.first()
         self.assertEqual(new_item.text, 'A new list item')
 
-    @skip
     def test_list_owner_is_saved_if_user_is_authenticated(self):
         request = HttpRequest()
         request.user = User.objects.create(email='a@b.com')
@@ -216,7 +215,7 @@ class NewListViewUnitTest(unittest.TestCase):
     def test_saves_form_with_owner_if_form_valid(self, mockNewListForm):
         mock_form = mockNewListForm.return_value
         mock_form.is_valid.return_value = True
-        new_list2(self.request)
+        new_list(self.request)
         mock_form.save.assert_called_once_with(owner=self.request.user)
 
     @patch('lists.views.redirect')
